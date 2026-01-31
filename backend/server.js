@@ -7,21 +7,38 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+// Middleware
+app.use(express.json());
+
+// Enhanced CORS to allow Vercel frontend
+app.use(cors({
+    origin: '*', // For debugging: allow all. Change to specific domain later.
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+// Request Logger
+app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+    next();
+});
 
 // Root Route
 app.get('/', (req, res) => {
-    res.send('API is running...');
+    res.json({ message: 'API is running', time: new Date().toISOString() });
 });
 
 // DB Config
 const db = process.env.MONGO_URI;
 
-// Connect to MongoDB
+// Connect to MongoDB with better error logging
 mongoose
     .connect(db)
-    .then(() => console.log('MongoDB Connected...'))
-    .catch(err => console.log(err));
+    .then(() => console.log('MongoDB Connected successfully to Atlas'))
+    .catch(err => {
+        console.error('MongoDB Connection Error:', err);
+        console.error('Make sure your IP is whitelisted in MongoDB Atlas (0.0.0.0/0)');
+    });
 
 // Routes
 app.use('/api/auth', require('./routes/auth'));
