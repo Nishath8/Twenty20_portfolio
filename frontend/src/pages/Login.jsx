@@ -4,6 +4,7 @@ import api from '../services/api';
 
 const Login = ({ theme, toggleTheme }) => {
     const [isLogin, setIsLogin] = useState(true);
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -22,7 +23,7 @@ const Login = ({ theme, toggleTheme }) => {
         }
 
         const endpoint = isLogin ? '/auth/login' : '/auth/register';
-        const payload = isLogin ? { email, password } : { email, password };
+        const payload = isLogin ? { email, password } : { name, email, password };
 
         try {
             const response = await api.post(endpoint, payload);
@@ -73,6 +74,18 @@ const Login = ({ theme, toggleTheme }) => {
                     {success && <div className="success-message">{success}</div>}
 
                     <form onSubmit={handleSubmit}>
+                        {!isLogin && (
+                            <div className="form-group">
+                                <label>Name</label>
+                                <input
+                                    type="text"
+                                    required
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    placeholder="Your Name"
+                                />
+                            </div>
+                        )}
                         <div className="form-group">
                             <label>Email</label>
                             <input

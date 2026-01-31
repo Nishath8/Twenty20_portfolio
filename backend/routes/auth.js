@@ -9,10 +9,10 @@ const User = require('../models/User');
 // @desc    Register a new user
 // @access  Public
 router.post('/register', async (req, res) => {
-    const { email, password } = req.body;
+    const { name, email, password } = req.body;
 
     // Simple validation
-    if (!email || !password) {
+    if (!name || !email || !password) {
         return res.status(400).json({ message: 'Please enter all fields' });
     }
 
@@ -25,6 +25,7 @@ router.post('/register', async (req, res) => {
 
         // Create new user
         user = new User({
+            name,
             email,
             password
         });
@@ -52,6 +53,7 @@ router.post('/register', async (req, res) => {
                     token,
                     user: {
                         id: user.id,
+                        name: user.name,
                         email: user.email
                     }
                 });
@@ -103,6 +105,7 @@ router.post('/login', async (req, res) => {
                     token,
                     user: {
                         id: user.id,
+                        name: user.name,
                         email: user.email
                     }
                 });
