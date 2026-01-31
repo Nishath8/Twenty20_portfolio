@@ -9,6 +9,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Root Route
+app.get('/', (req, res) => {
+    res.send('API is running...');
+});
+
 // DB Config
 const db = process.env.MONGO_URI;
 
