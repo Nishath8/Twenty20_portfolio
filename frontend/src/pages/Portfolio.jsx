@@ -161,7 +161,7 @@ const Portfolio = ({ theme, toggleTheme }) => {
                                 <div className="tech-stack">React, Flask, PostgreSQL, GenAI, RBAC</div>
                                 <p>A comprehensive, AI-powered system designed to streamline the entire lifecycle of question paper management for educational institutions. QPDS enables faculty to collaboratively create, review, and distribute high-quality question papers while providing administrators with robust oversight tools.</p>
                                 <div className="project-links">
-                                    <button className="demo-btn">Live Demo</button>
+                                    <a href="https://qpds-ui.vercel.app/" target="_blank" rel="noopener noreferrer" className="demo-btn">Live Demo</a>
                                     <a href="https://github.com/Muzammil0777/QPDS-UI" target="_blank" rel="noopener noreferrer" className="github-btn">GitHub Repo</a>
                                 </div>
                             </li>
