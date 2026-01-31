@@ -94,11 +94,13 @@ const Portfolio = ({ theme, toggleTheme }) => {
                         <div className="skill-category">
                             <h3>Frameworks & Databases</h3>
                             <div className="skills-list">
-                                <span className="skill-tag">React (Vite)</span>
+                                <span className="skill-tag">React.js</span>
                                 <span className="skill-tag">Flask</span>
                                 <span className="skill-tag">Node.js</span>
+                                <span className="skill-tag">Express.js</span>
                                 <span className="skill-tag">PostgreSQL</span>
                                 <span className="skill-tag">MySQL</span>
+                                <span className="skill-tag">MongoDB</span>
                                 <span className="skill-tag">Streamlit</span>
                             </div>
                         </div>
@@ -112,6 +114,10 @@ const Portfolio = ({ theme, toggleTheme }) => {
                                 <span className="skill-tag">NumPy</span>
                                 <span className="skill-tag">Pandas</span>
                                 <span className="skill-tag">LightGBM</span>
+                                <span className="skill-tag">Matplotlib</span>
+                                <span className="skill-tag">DNSPython</span>
+                                <span className="skill-tag">Jinja2</span>
+                                <span className="skill-tag">Editor.js</span>
                                 <span className="skill-tag">Agentic AI</span>
                             </div>
                         </div>
