@@ -44,7 +44,10 @@ const Portfolio = ({ theme, toggleTheme }) => {
     return (
         <div className="portfolio-container">
             <header className="portfolio-header">
-                <div className="logo">MyPortfolio</div>
+                <div className="header-branding">
+                    <h1 className="header-name">Nishath Anjum P</h1>
+                    <p className="header-role">Full Stack Developer</p>
+                </div>
                 <div className="user-info">
                     <button onClick={toggleTheme} className="theme-toggle-btn header-toggle">
                         {theme === 'light' ? '🌙' : '☀️'}
