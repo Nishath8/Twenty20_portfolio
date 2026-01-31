@@ -45,8 +45,7 @@ const Portfolio = ({ theme, toggleTheme }) => {
         <div className="portfolio-container">
             <header className="portfolio-header">
                 <div className="header-branding">
-                    <h1 className="header-name">Nishath Anjum P</h1>
-                    <p className="header-role">Full-Stack Developer</p>
+                    <h1 className="header-name">Welcome, {user?.name || user?.email?.split('@')[0] || 'User'}!</h1>
                 </div>
                 <div className="user-info">
                     <button onClick={toggleTheme} className="theme-toggle-btn header-toggle">
@@ -61,7 +60,8 @@ const Portfolio = ({ theme, toggleTheme }) => {
                 {error && <div className="error-banner">{error}</div>}
 
                 <section className="hero-section">
-                    <h1>Welcome, {user?.email?.split('@')[0] || 'Developer'}!</h1>
+                    <h1>Nishath Anjum P</h1>
+                    <p className="header-role" style={{ fontSize: '1.25rem', marginBottom: '1rem', color: 'var(--text-muted)' }}>Full-Stack Developer</p>
                     <p className="tagline">
                         Computer Science undergraduate specializing in AI-driven systems, full-stack web applications, and secure, scalable architectures.
                     </p>
