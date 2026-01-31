@@ -54,65 +54,77 @@ const Login = ({ theme, toggleTheme }) => {
                     {theme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}
                 </button>
             </div>
-            <div className={`login-card ${!isLogin ? 'register-mode' : ''}`}>
-                <h1>{isLogin ? 'Welcome Back' : 'Create Account'}</h1>
-                <p className="subtitle">{isLogin ? 'Login to continue' : 'Sign up to get started'}</p>
 
-                {error && <div className="error-message">{error}</div>}
-                {success && <div className="success-message">{success}</div>}
+            <div className="login-content-wrapper">
+                <div className="login-branding">
+                    <h1 className="brand-title">Nishath Anjum P</h1>
+                    <p className="brand-subtitle">Full-Stack Developer Portfolio</p>
+                    <p className="brand-description">
+                        Showcasing my journey in building secure, scalable AI-driven web applications.
+                        Login to explore my projects, skills, and experience.
+                    </p>
+                </div>
 
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label>Email</label>
-                        <input
-                            type="email"
-                            required
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="you@example.com"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Password</label>
-                        <input
-                            type="password"
-                            required
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="••••••••"
-                        />
-                    </div>
+                <div className={`login-card ${!isLogin ? 'register-mode' : ''}`}>
+                    <h1>{isLogin ? 'Welcome Back' : 'Create Account'}</h1>
+                    <p className="subtitle">{isLogin ? 'Login to continue' : 'Sign up to get started'}</p>
 
-                    {!isLogin && (
+                    {error && <div className="error-message">{error}</div>}
+                    {success && <div className="success-message">{success}</div>}
+
+                    <form onSubmit={handleSubmit}>
                         <div className="form-group">
-                            <label>Confirm Password</label>
+                            <label>Email</label>
+                            <input
+                                type="email"
+                                required
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="you@example.com"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Password</label>
                             <input
                                 type="password"
                                 required
-                                value={confirmPassword}
-                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                                 placeholder="••••••••"
                             />
                         </div>
-                    )}
 
-                    <button type="submit" className={`primary-btn ${!isLogin ? 'register-btn' : ''}`}>
-                        {isLogin ? 'Login' : 'Register'}
-                    </button>
-                </form>
+                        {!isLogin && (
+                            <div className="form-group">
+                                <label>Confirm Password</label>
+                                <input
+                                    type="password"
+                                    required
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                    placeholder="••••••••"
+                                />
+                            </div>
+                        )}
 
-                <p className="toggle-mode">
-                    {isLogin ? "Don't have an account? " : "Already have an account? "}
-                    <button
-                        className="link-btn"
-                        onClick={() => {
-                            setIsLogin(!isLogin);
-                            setError('');
-                        }}
-                    >
-                        {isLogin ? 'Register' : 'Login'}
-                    </button>
-                </p>
+                        <button type="submit" className={`primary-btn ${!isLogin ? 'register-btn' : ''}`}>
+                            {isLogin ? 'Login' : 'Register'}
+                        </button>
+                    </form>
+
+                    <p className="toggle-mode">
+                        {isLogin ? "Don't have an account? " : "Already have an account? "}
+                        <button
+                            className="link-btn"
+                            onClick={() => {
+                                setIsLogin(!isLogin);
+                                setError('');
+                            }}
+                        >
+                            {isLogin ? 'Register' : 'Login'}
+                        </button>
+                    </p>
+                </div>
             </div>
         </div>
     );

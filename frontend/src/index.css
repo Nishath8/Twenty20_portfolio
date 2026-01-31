@@ -54,7 +54,44 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 2rem;
+}
+
+.login-content-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4rem;
+  max-width: 1000px;
+  width: 100%;
+  justify-content: center;
+}
+
+.login-branding {
+  flex: 1;
+  max-width: 500px;
+  text-align: left;
+}
+
+.brand-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+}
+
+.brand-subtitle {
+  font-size: 1.5rem;
+  color: var(--text-main);
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.brand-description {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
 }
 
 .login-card {
@@ -487,6 +524,23 @@ body {
 
 .theme-toggle-btn:hover {
   background-color: var(--bg-color);
+}
+
+@media (max-width: 850px) {
+  .login-content-wrapper {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .login-branding {
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .brand-title {
+    font-size: 2.5rem;
+  }
 }
 
 @media (max-width: 640px) {
