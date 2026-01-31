@@ -46,7 +46,7 @@ const Portfolio = ({ theme, toggleTheme }) => {
             <header className="portfolio-header">
                 <div className="header-branding">
                     <h1 className="header-name">Nishath Anjum P</h1>
-                    <p className="header-role">Full Stack Developer</p>
+                    <p className="header-role">Full-Stack Developer</p>
                 </div>
                 <div className="user-info">
                     <button onClick={toggleTheme} className="theme-toggle-btn header-toggle">
@@ -96,7 +96,6 @@ const Portfolio = ({ theme, toggleTheme }) => {
                             <div className="skills-list">
                                 <span className="skill-tag">React.js</span>
                                 <span className="skill-tag">Flask</span>
-                                <span className="skill-tag">Node.js</span>
                                 <span className="skill-tag">Express.js</span>
                                 <span className="skill-tag">PostgreSQL</span>
                                 <span className="skill-tag">MySQL</span>
