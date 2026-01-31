@@ -31,14 +31,41 @@ app.get('/', (req, res) => {
 // DB Config
 const db = process.env.MONGO_URI;
 
-// Connect to MongoDB with better error logging
-mongoose
-    .connect(db)
-    .then(() => console.log('MongoDB Connected successfully to Atlas'))
-    .catch(err => {
-        console.error('MongoDB Connection Error:', err);
-        console.error('Make sure your IP is whitelisted in MongoDB Atlas (0.0.0.0/0)');
-    });
+// Cached connection variable
+let cachedDb = null;
+
+// Function to connect to MongoDB
+async function connectToDatabase() {
+    if (cachedDb) {
+        return cachedDb;
+    }
+
+    try {
+        const connection = await mongoose.connect(db, {
+            serverSelectionTimeoutMS: 5000, // Fail fast if IP is blocked
+        });
+        cachedDb = connection;
+        console.log('MongoDB Connected successfully to Atlas');
+        return connection;
+    } catch (error) {
+        console.error('MongoDB Connection Error:', error);
+        throw error;
+    }
+}
+
+// Middleware to ensure DB is connected before handling requests
+app.use(async (req, res, next) => {
+    // Skip DB connection for root route and OPTIONS
+    if (req.path === '/' || req.method === 'OPTIONS') return next();
+
+    try {
+        await connectToDatabase();
+        next();
+    } catch (err) {
+        console.error("Failed to connect to DB in middleware");
+        res.status(500).json({ message: "Database Connection Failed", error: err.message });
+    }
+});
 
 // Routes
 app.use('/api/auth', require('./routes/auth'));
