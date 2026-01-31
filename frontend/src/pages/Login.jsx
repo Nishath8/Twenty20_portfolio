@@ -8,11 +8,13 @@ const Login = ({ theme, toggleTheme }) => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
+        setSuccess('');
 
         if (!isLogin && password !== confirmPassword) {
             setError("Passwords don't match!");
@@ -24,16 +26,20 @@ const Login = ({ theme, toggleTheme }) => {
 
         try {
             const response = await api.post(endpoint, payload);
-            // Backend should return token on both login and register
-            // If register doesn't return token, we might need to login after register
-            if (response.data.token) {
-                localStorage.setItem('token', response.data.token);
-                navigate('/portfolio');
+
+            if (isLogin) {
+                // Login Logic
+                if (response.data.token) {
+                    localStorage.setItem('token', response.data.token);
+                    navigate('/portfolio');
+                }
             } else {
-                // Auto-login after register logic if needed, or just redirect to login view
-                // For now assuming backend returns token on register as per previous context
+                // Registration Logic
                 setIsLogin(true);
-                setError('Registration successful! Please login.');
+                setSuccess('Registration successful! Please login to continue.');
+                // Clear inputs if desired, or keep email
+                setPassword('');
+                setConfirmPassword('');
             }
 
         } catch (err) {
@@ -53,6 +59,7 @@ const Login = ({ theme, toggleTheme }) => {
                 <p className="subtitle">{isLogin ? 'Login to continue' : 'Sign up to get started'}</p>
 
                 {error && <div className="error-message">{error}</div>}
+                {success && <div className="success-message">{success}</div>}
 
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">

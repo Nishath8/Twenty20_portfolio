@@ -168,6 +168,15 @@ body {
   font-size: 0.875rem;
 }
 
+.success-message {
+  background-color: #d1fae5;
+  color: #065f46;
+  padding: 0.75rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+}
+
 /* Portfolio Page */
 .portfolio-container {
   min-height: 100vh;
